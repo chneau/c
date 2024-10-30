@@ -9,11 +9,14 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
-    const zap = b.dependency("zap", .{
-        .target = target,
-        .optimize = optimize,
-    });
-    exe.root_module.addImport("zap", zap.module("zap"));
+    // example of adding a dependency
+    // zig fetch --save "git+https://github.com/zigzap/zap#v0.9.1"
+    // it will add stuff on build.zig.zon
+    // const zap = b.dependency("zap", .{
+    //     .target = target,
+    //     .optimize = optimize,
+    // });
+    // exe.root_module.addImport("zap", zap.module("zap"));
     b.installArtifact(exe);
     const run_cmd = b.addRunArtifact(exe);
     run_cmd.step.dependOn(b.getInstallStep());
