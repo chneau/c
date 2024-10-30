@@ -1,7 +1,9 @@
 {
 	"scripts": {
 		"dev": "nodemon --ext zig --exec bun start",
-		"start": "zig run -fstrip main.zig",
-		"build": "rm -rf dist && zig build-exe -fstrip main.zig && rm main.o && mkdir -p dist && mv main dist/main"
+		"start": "zig build run",
+		"build": "rm -rf dist && zig build-exe -fstrip main.zig && rm main.o && mkdir -p dist && mv main dist/main",
+		"test-watch": "nodemon --ext zig --exec bun run test",
+		"test": "zig build test --summary all"
 	}
 }
